@@ -7,6 +7,7 @@ var path = require('path'),
     flash = require('connect-flash');
 
 var routes = require('./routes');
+var links = require('./routes/links');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/', links);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log('Server started');

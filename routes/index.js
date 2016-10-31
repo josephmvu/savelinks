@@ -34,22 +34,9 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true
 }));
 
-router.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard', {
-        user: req.user
-    });
-});
-
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
 
 module.exports = router;
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}

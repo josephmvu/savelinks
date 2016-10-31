@@ -1,0 +1,51 @@
+<%- include ../partials/header %>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Links</h1>
+            <p>If you can see this page then you are logged in!</p>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>List</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% links.forEach(function(link) { %>
+                <tr>
+                    <td><%= link.id %></td>
+                    <td><%= link.title %></td>
+                    <td><%= link.url %></td>
+                    <td><%= link.list %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <form action="/dashboard/links" method="POST">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" placeholder="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input type="url" class="form-control" name="url" placeholder="https:// - paste URL here" required>
+                    </div>
+                    <div class="form-group">
+                        <label>List</label>
+                        <input type="text" class="form-control" name="list" placeholder="List">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Link</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+<%- include ../partials/footer %>
