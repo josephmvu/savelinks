@@ -29,12 +29,6 @@ var options = {
         }
     },
     instanceMethods: {
-        // setPassword: (password, done) => {
-        //     return bcrypt.hash(password, null, null, (err, hash) => {
-        //         this.password = hash;
-        //         done(err, true);
-        //     });
-        // }
         checkPassword: (password, userPassword, cb) => {
             return bcrypt.compare(password, userPassword, (err, res) => {
                 cb(err, res);
