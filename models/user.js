@@ -17,7 +17,7 @@ var attributes = {
 };
 
 var options = {
-    freezeTableName: true,
+    freezeTableName: false,
     hooks: {
         beforeCreate: (user) => {
             console.log('Hashing password');
