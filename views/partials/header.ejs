@@ -22,10 +22,22 @@
                 </div>
         
                 <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <% if (!user) { %>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/login">Login</a></li>
                         <li><a href="/signup">Sign up</a></li>
                     </ul>
+                    <% } else { %>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <p class="navbar-text">Signed in as <%= user.email %></p>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                    <% } %>
+                    
                 </div>
             </div>
         </nav>
