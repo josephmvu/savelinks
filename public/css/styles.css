@@ -10,3 +10,7 @@
 .page-header {
     margin-top: 0;
 }
+
+form {
+    display: inline;
+}

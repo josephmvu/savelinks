@@ -2,6 +2,7 @@ var path = require('path'),
     logger = require('morgan'),
     express = require('express'),
     bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
     passport = require('passport'),
     session = require('express-session'),
     flash = require('connect-flash');
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev')); // log all requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
+app.use(methodOverride('_method'));
 app.use(session({
     secret: 'getyourownsecret',
     resave: false,
