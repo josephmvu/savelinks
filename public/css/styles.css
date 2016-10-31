@@ -1,0 +1,12 @@
+.navbar-header .navbar-brand:link,
+.navbar-header .navbar-brand:visited {
+    color: #2780e3;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 22px;
+}
+
+.page-header {
+    margin-top: 0;
+}
