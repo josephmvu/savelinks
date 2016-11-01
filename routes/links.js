@@ -18,7 +18,7 @@ router.get('/dashboard', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.post('/dashboard/links', isLoggedIn, (req, res, next) => {
+router.post('/dashboard/', isLoggedIn, (req, res, next) => {
     Models.Link.create({
         title: req.body.title,
         url: req.body.url,
@@ -39,7 +39,7 @@ router.get('/dashboard/new', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.get('/dashboard/links/:id/edit', isLoggedIn, (req, res, next) => {
+router.get('/dashboard/:id/edit', isLoggedIn, (req, res, next) => {
     Models.Link.findOne({
         where: {
             userId: req.user.id,
@@ -54,7 +54,7 @@ router.get('/dashboard/links/:id/edit', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.put('/dashboard/links/:id', isLoggedIn, (req, res, next) => {
+router.put('/dashboard/:id', isLoggedIn, (req, res, next) => {
     Models.Link.findOne({
         where: {
             userId: req.user.id,
@@ -76,7 +76,7 @@ router.put('/dashboard/links/:id', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.delete('/dashboard/links/:id', isLoggedIn, (req, res, next) => {
+router.delete('/dashboard/:id', isLoggedIn, (req, res, next) => {
     Models.Link.destroy({
         where: {
             userId: req.user.id,
