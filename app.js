@@ -35,7 +35,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/', links);
+app.use('/dashboard', links);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log('Server started');

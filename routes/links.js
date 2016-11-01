@@ -2,51 +2,46 @@ var express = require('express'),
     router = express.Router(),
     Models = require('../models');
 
-router.get('/dashboard', isLoggedIn, (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
     Models.Link.findAll({ 
         where: { userId: req.user.id }, 
         order: [ [ 'id', 'DESC'] ] 
-    })
-    .then((links) => {
+    }).then((links) => {
         res.render('dashboard', {
             user: req.user,
             links: links
         });
-    })
-    .catch((err) => {
+    }).catch((err) => {
         res.status(500).json(err);
     });
 });
 
-router.post('/dashboard/', isLoggedIn, (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
     Models.Link.create({
         title: req.body.title,
         url: req.body.url,
         list: req.body.list,
         userId: req.user.id
-    })
-    .then((link) => {
+    }).then((link) => {
         res.redirect('/dashboard');
-    })
-    .catch((err) => {
+    }).catch((err) => {
         res.json(err);
     });
 });
 
-router.get('/dashboard/new', isLoggedIn, (req, res, next) => {
+router.get('/new', isLoggedIn, (req, res, next) => {
     res.render('links/new', {
         user: req.user
     });
 });
 
-router.get('/dashboard/:id/edit', isLoggedIn, (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, (req, res, next) => {
     Models.Link.findOne({
         where: {
             userId: req.user.id,
             id: req.params.id
         }
-    })
-    .then((link) => {
+    }).then((link) => {
         res.render('links/edit', {
             user: req.user,
             link: link
@@ -54,19 +49,17 @@ router.get('/dashboard/:id/edit', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.put('/dashboard/:id', isLoggedIn, (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => {
     Models.Link.findOne({
         where: {
             userId: req.user.id,
             id: req.params.id
         }
-    })
-    .then((link) => {
+    }).then((link) => {
         link.title = req.body.title;
         link.url = req.body.url;
         link.list = req.body.list;
-        link.save()
-        .then(() => {
+        link.save().then(() => {
             res.redirect('/dashboard');
         }).catch((err) => {
             res.json(err);
@@ -76,18 +69,16 @@ router.put('/dashboard/:id', isLoggedIn, (req, res, next) => {
     });
 });
 
-router.delete('/dashboard/:id', isLoggedIn, (req, res, next) => {
+router.delete('/:id', isLoggedIn, (req, res, next) => {
     Models.Link.destroy({
         where: {
             userId: req.user.id,
             id: req.params.id
         }
-    })
-    .then(() => {
+    }).then(() => {
         console.log('Link deleted');
         res.redirect('/dashboard');
-    })
-    .catch((err) => {
+    }).catch((err) => {
         res.json(err);
     });
 });

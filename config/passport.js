@@ -23,9 +23,7 @@ passport.use('local-signup', new LocalStrategy({
 }, (req, email, password, done) => {
     email = email.toLowerCase();
     Models.User.findOne({
-        where: {
-            email: email
-        }
+        where: { email: email }
     }).then((user) => {
         if (user) {
             // email address is already taken - return
@@ -53,9 +51,7 @@ passport.use('local-login', new LocalStrategy({
 }, (req, email, password, done) => {
     email = email.toLowerCase();
     Models.User.findOne({
-        where: {
-            email: email
-        }
+        where: { email: email }
     }).then((user) => {
         // if user does not exist, return
         if (!user) {
@@ -73,5 +69,7 @@ passport.use('local-login', new LocalStrategy({
             done(null, false, req.flash('loginMessage', 'Incorrect password.'));
         });
         
+    }).catch((err) => {
+        done(err, false, req.flash('loginMessage', 'Error finding email in database.'));
     });
 }));
